@@ -15,7 +15,7 @@ void writeThings(int fd) {
 
   AllThings::Builder things = message.initRoot<AllThings>();
 
-  const size_t size = 1000000;
+  const size_t size = 20000000;
 
   ::capnp::List<MyThing>::Builder thing_list = things.initThings(size);
 
@@ -24,7 +24,7 @@ void writeThings(int fd) {
       thing.setThing(dist(e2));
   }
 
-  writeMessageToFd(fd, message);
+  writePackedMessageToFd(fd, message);
 }
 
 
