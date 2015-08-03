@@ -30,7 +30,7 @@ void writeThings(int fd) {
 
 int main(int argc, char *argv[]) {
 
-    FILE* f = fopen("out.bin", "w");
+    FILE* f = fopen("/dev/null", "w");
     writeThings(fileno(f));
 
     return 0;

@@ -14,7 +14,7 @@ int main() {
     std::uniform_real_distribution<> dist(0, 1);
 
     size_t size = 20000000;
-    TFile f("out.root", "recreate");
+    TFile f("/dev/null", "recreate");
     f.SetCompressionLevel(0);
     TTree tree("tree", "tree");
     TClonesArray arr("MyThing", size);

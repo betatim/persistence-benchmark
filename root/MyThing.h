@@ -7,17 +7,17 @@ public:
     MyThing() {
         this->thing = 0.;
     }
-    MyThing(float x) {
+    MyThing(double x) {
         this->thing = x;
     }
 
     ClassDef(MyThing, 1);
 
-    void SetThing(float x) {
+    void SetThing(double x) {
         this->thing = x;
     }
 
 private:
-    float thing;
+    double thing;
 };
 
