@@ -19,8 +19,8 @@ private:
 };
 
 int root() {
-    TObjArray arr(10000);
-    for (int i=0; i<10000; i++) {
+    TObjArray arr(30000);
+    for (int i=0; i<30000; i++) {
         MyThing *thing = new MyThing(42.);
         arr.Add((TObject*) thing);
     }

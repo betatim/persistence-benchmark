@@ -10,7 +10,7 @@ void writeThings(int fd) {
 
   AllThings::Builder things = message.initRoot<AllThings>();
 
-  const size_t size = 10000;
+  const size_t size = 30000;
 
   ::capnp::List<MyThing>::Builder thing_list = things.initThings(size);
 
