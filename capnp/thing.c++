@@ -4,8 +4,13 @@
 #include <iostream>
 #include <cstdio>
 #include <iostream>
+#include <random>
 
 void writeThings(int fd) {
+  std::random_device rd;
+  std::mt19937 e2(rd());
+  std::uniform_real_distribution<> dist(0, 1);
+
   ::capnp::MallocMessageBuilder message;
 
   AllThings::Builder things = message.initRoot<AllThings>();
@@ -16,10 +21,10 @@ void writeThings(int fd) {
 
   for (size_t i=0; i<size; i++) {
       MyThing::Builder thing = thing_list[i];
-      thing.setThing(42.);
+      thing.setThing(dist(e2));
   }
 
-  writePackedMessageToFd(fd, message);
+  writeMessageToFd(fd, message);
 }
 
 
