@@ -6,15 +6,15 @@
 class Event: public TObject {
 public:
     Event() :
-    particles(TClonesArray("Particle", 0)) {
+    particles(std::vector<Particle>()) {
     }
 
-    Event(TClonesArray &particles) :
+    Event(std::vector<Particle> &particles) :
     particles(particles) {
     }
 
     ClassDef(Event, 1);
 
-    TClonesArray particles;
+    std::vector<Particle> particles;
 };
 

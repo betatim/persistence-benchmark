@@ -21,16 +21,17 @@ int main() {
     double x = 0;
 
     for (int i=0; i<size; i++) {
-        TClonesArray arr("Particle", num_particles);
+        std::vector<Particle> arr;
         for (size_t i=0; i<num_particles; i++) {
-            auto part = static_cast<Particle*>(arr.ConstructedAt(i));
-            part->pos = TVector3(x++, x++, x++);
-            part->mom = TLorentzVector(x++, x++, x++, x++);
-            part->childrenIdx.push_back(1);
-            part->childrenIdx.push_back(2);
-            part->childrenIdx.push_back(3);
-            part->childrenIdx.push_back(4);
-            part->childrenIdx.push_back(5);
+            Particle part;
+            part.pos = TVector3(x++, x++, x++);
+            part.mom = TLorentzVector(x++, x++, x++, x++);
+            part.childrenIdx.push_back(1);
+            part.childrenIdx.push_back(2);
+            part.childrenIdx.push_back(3);
+            part.childrenIdx.push_back(4);
+            part.childrenIdx.push_back(5);
+            arr.push_back(part);
         }
         event.particles = arr;
         tree.Fill();
