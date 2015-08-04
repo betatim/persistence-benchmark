@@ -17,10 +17,10 @@ int main() {
     TFile f("/dev/null", "recreate");
     f.SetCompressionLevel(0);
     TTree tree("tree", "tree");
-    MyThing thing(42.);
+    MyThing thing(dist(e2));
     tree.Branch("allthethings", &thing);
     for (int i=0; i<size; i++) {
-        MyThing thing = MyThing(42.);
+        MyThing thing = MyThing(dist(e2));
         tree.Fill();
     }
 

@@ -17,14 +17,14 @@ void writeThings(int fd) {
 
   const size_t size = 20000000;
 
-  ::capnp::List<MyThing>::Builder thing_list = things.initThings(size);
+  auto thing_list = things.initThings(size);
 
   for (size_t i=0; i<size; i++) {
       MyThing::Builder thing = thing_list[i];
       thing.setThing(dist(e2));
   }
 
-  writePackedMessageToFd(fd, message);
+  writeMessageToFd(fd, message);
 }
 
 
