@@ -1,13 +1,15 @@
 
 all: run
 
+run: event
+	bash -c 'time ./event'
 
-run: thing
-	bash -c 'time ./thing'
+event: event.c++ Event_dict.cxx Particle_dict.cxx
+	g++ -std=c++11 -O3 `root-config --cflags --libs` -o event event.c++ Event_dict.cxx Particle_dict.cxx
 
-thing: thing.c++ MyThing_dict.cxx
-	g++ -std=c++11 -O3 `root-config --cflags --libs` -o thing thing.c++ MyThing_dict.cxx
+Particle_dict.cxx: Particle.h
+	rootcint -f Particle_dict.cxx -c -p Particle.h
 
-MyThing_dict.cxx: MyThing.h
-	rootcint -f MyThing_dict.cxx -c -p MyThing.h
+Event_dict.cxx: Event.h
+	rootcint -f Event_dict.cxx -c -p Event.h
 
