@@ -17,14 +17,12 @@ int main() {
     TFile f("/dev/null", "recreate");
     f.SetCompressionLevel(0);
     TTree tree("tree", "tree");
-    TClonesArray arr("MyThing", size);
-    tree.Branch("allthethings", &arr, size, false);
-    //arr.BypassStreamer();
+    MyThing thing(42.);
+    tree.Branch("allthethings", &thing);
     for (int i=0; i<size; i++) {
-        MyThing* thing = (MyThing*) arr.ConstructedAt(i);
-        thing->SetThing(dist(e2));
+        MyThing thing = MyThing(42.);
+        tree.Fill();
     }
-    tree.Fill();
 
     tree.Write();
     f.Close();
