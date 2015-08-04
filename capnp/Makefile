@@ -1,10 +1,10 @@
 
-run: thing
-	bash -c 'time ./thing'
+run: event
+	bash -c 'time ./event'
 
-thing: thing.c++ thing.capnp.c++
-	g++ -O3 -std=c++11 -lcapnp -lkj -o thing thing.c++ thing.capnp.c++
+event: event.c++ event.capnp.c++
+	g++ -O3 -std=c++11 -lcapnp -lkj -o event event.c++ event.capnp.c++
 
-thing.capnp.c++: thing.capnp
+event.capnp.c++: event.capnp
 	capnpc -oc++ $^
 
