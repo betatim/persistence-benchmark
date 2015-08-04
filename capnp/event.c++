@@ -6,7 +6,7 @@
 #include <iostream>
 #include <random>
 
-const size_t size = 1000;
+const size_t size = 5000;
 const size_t num_particles = 2000;
 
 void writeEvents(std::string fname) {
@@ -16,6 +16,8 @@ void writeEvents(std::string fname) {
   std::random_device rd;
   std::mt19937 e2(rd());
   std::uniform_real_distribution<> dist(0, 1);
+
+  double x = 0.;
 
   for (size_t i=0; i<size; i++) {
       capnp::MallocMessageBuilder message;
@@ -29,14 +31,14 @@ void writeEvents(std::string fname) {
 
           auto pos = part.getPos();
           auto mom = part.getMom();
-          pos.setX(dist(e2));
-          pos.setY(dist(e2));
-          pos.setZ(dist(e2));
+          pos.setX(x++);
+          pos.setY(x++);
+          pos.setZ(x++);
 
-          mom.setE(dist(e2));
-          mom.setPx(dist(e2));
-          mom.setPy(dist(e2));
-          mom.setPz(dist(e2));
+          mom.setE(x++);
+          mom.setPx(x++);
+          mom.setPy(x++);
+          mom.setPz(x++);
 
           auto children = part.initChildrenIdx(5);
           children.set(0, (i + num_particles - 1) % num_particles);
